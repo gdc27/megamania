@@ -7,5 +7,4 @@ docker run --rm \
     composer install --ignore-platform-reqs
 
 #start project in docker's containers
-cd site
 docker compose up
