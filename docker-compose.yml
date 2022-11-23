@@ -29,7 +29,7 @@ services:
             - sail
         depends_on:
             - pgsql
-            - dependencies
+          #  - dependencies
     pgsql:
         image: "postgres:14"
         ports:
@@ -56,8 +56,8 @@ services:
                 ]
             retries: 3
             timeout: 5s
-        depends_on:
-            - dependencies
+        #depends_on:
+        #    - dependencies
     pgadmin:
         container_name: pgadmin_container
         image: dpage/pgadmin4:6.15
