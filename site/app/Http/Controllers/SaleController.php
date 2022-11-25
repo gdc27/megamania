@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Customer;
+use App\Models\Employee;
+use App\Models\Product;
 use App\Models\Sale;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -30,18 +33,22 @@ class SaleController extends Controller
         }
 
         return Inertia::render('Sales/Index', [
-            'sales' => $sales,
+            'sales' => Sale::all(),
         ]);
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Inertia\Response
      */
     public function create()
     {
-        //
+        return Inertia::render('Sales/Create', [
+            'employees' => Employee::all(),
+            'products' => Product::all(),
+            'customers' => Customer::all()
+        ]);
     }
 
     /**
