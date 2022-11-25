@@ -33,7 +33,7 @@ class SaleController extends Controller
         }
 
         return Inertia::render('Sales/Index', [
-            'sales' => Sale::all(),
+            'sales' => $sales,
         ]);
     }
 
