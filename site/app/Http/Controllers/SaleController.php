@@ -16,7 +16,7 @@ class SaleController extends Controller
     public function index()
     {
         return Inertia::render('Sales/Index', [
-            'sales' => Sale::all(),
+            'sales' => $sales,
         ]);
     }
 

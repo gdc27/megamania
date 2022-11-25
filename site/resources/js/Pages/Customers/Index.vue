@@ -1,6 +1,7 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head } from '@inertiajs/inertia-vue3';
+import PrimaryButton from "@/Components/PrimaryButton.vue";
 
 defineProps(['customers']);
 </script>
@@ -15,6 +16,9 @@ defineProps(['customers']);
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <a :href="route('customers.create')">
+                    <PrimaryButton class="mb-3">Add a customer</PrimaryButton>
+                </a>
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div v-for="customer in customers" class="p-6 text-gray-900">
                         {{ customer.first_name }} {{ customer.last_name }} - {{ customer.email }}

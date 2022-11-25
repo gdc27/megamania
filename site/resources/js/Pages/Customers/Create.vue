@@ -22,7 +22,6 @@ const form = useForm({
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="p-6 text-gray-900">Customers Create</div>
                 <form @submit.prevent="form.post(route('customers.store'), { onSuccess: () => form.reset() })">
                     <InputLabel>First name</InputLabel>
                     <TextInput
@@ -51,7 +50,7 @@ const form = useForm({
                         class="mt-1 block"
                         v-model="form.email"
                     />
-                    <PrimaryButton class="mt-3">Ajouter</PrimaryButton>
+                    <PrimaryButton class="mt-3">Add</PrimaryButton>
                 </form>
             </div>
         </div>

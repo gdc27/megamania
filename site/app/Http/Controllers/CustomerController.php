@@ -48,7 +48,7 @@ class CustomerController extends Controller
         $validated = $request->validate([
             'first_name' => 'required|string|max:30',
             'last_name' => 'required|string|max:40',
-            'email' => 'required|email',
+            'email' => 'required|email|unique',
         ]);
 
         Customer::create($validated);

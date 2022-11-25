@@ -1,6 +1,8 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head } from '@inertiajs/inertia-vue3';
+
+defineProps(['sales'])
 </script>
 
 <template>
@@ -14,7 +16,9 @@ import { Head } from '@inertiajs/inertia-vue3';
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                    <div class="p-6 text-gray-900">Sales Index</div>
+                    <div v-for="sale in sales" class="p-6 text-gray-900">
+                        {{ sale.date }} {{ sale.price }}€ {{ sale.product_count }} {{ sale.customer }} {{ sale.employee }}
+                    </div>
                 </div>
             </div>
         </div>
