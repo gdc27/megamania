@@ -1,6 +1,8 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head } from '@inertiajs/inertia-vue3';
+
+defineProps(['customers']);
 </script>
 
 <template>
@@ -14,7 +16,9 @@ import { Head } from '@inertiajs/inertia-vue3';
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                    <div class="p-6 text-gray-900">Customers Index</div>
+                    <div v-for="customer in customers" class="p-6 text-gray-900">
+                        {{ customer.first_name }} {{ customer.last_name }} - {{ customer.email }}
+                    </div>
                 </div>
             </div>
         </div>

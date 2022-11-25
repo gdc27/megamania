@@ -1,10 +1,19 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { Head } from '@inertiajs/inertia-vue3';
+import {Head, useForm} from '@inertiajs/inertia-vue3';
+import PrimaryButton from "@/Components/PrimaryButton.vue";
+import TextInput from "@/Components/TextInput.vue";
+import InputLabel from "@/Components/InputLabel.vue";
+
+const form = useForm({
+    first_name: '',
+    last_name: '',
+    email: '',
+})
 </script>
 
 <template>
-    <Head title="Customers Create" />
+    <Head title="Customers Create"/>
 
     <AuthenticatedLayout>
         <template #header>
@@ -13,9 +22,37 @@ import { Head } from '@inertiajs/inertia-vue3';
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                    <div class="p-6 text-gray-900">Customers Create</div>
-                </div>
+                <div class="p-6 text-gray-900">Customers Create</div>
+                <form @submit.prevent="form.post(route('customers.store'), { onSuccess: () => form.reset() })">
+                    <InputLabel>First name</InputLabel>
+                    <TextInput
+                        id="firstname"
+                        type="text"
+                        placeholder="Robin"
+                        class="mt-1 block"
+                        v-model="form.first_name"
+                        required
+                        autofocus
+                    />
+                    <InputLabel>Last name</InputLabel>
+                    <TextInput
+                        id="lastname"
+                        type="text"
+                        placeholder="Meunier"
+                        class="mt-1 block"
+                        v-model="form.last_name"
+                        required
+                    />
+                    <InputLabel>Email</InputLabel>
+                    <TextInput
+                        id="email"
+                        type="email"
+                        placeholder="robin@gmail.com"
+                        class="mt-1 block"
+                        v-model="form.email"
+                    />
+                    <PrimaryButton class="mt-3">Ajouter</PrimaryButton>
+                </form>
             </div>
         </div>
     </AuthenticatedLayout>
