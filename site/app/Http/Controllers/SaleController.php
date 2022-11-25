@@ -15,6 +15,20 @@ class SaleController extends Controller
      */
     public function index()
     {
+        $sales = Sale::with('employee')
+            ->with('customer')
+            ->with('products')
+            ->withCount('products')
+            ->get();
+
+        // TODO améliorer ça
+        foreach ($sales as $sale) {
+            $sale->totalPrice = 0;
+            foreach($sale->products as $product) {
+                $sale->totalPrice += $product->price * $product->pivot->quantity;
+            }
+        }
+
         return Inertia::render('Sales/Index', [
             'sales' => $sales,
         ]);
@@ -45,11 +59,23 @@ class SaleController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Models\Sale  $sale
-     * @return \Illuminate\Http\Response
+     * @return \Inertia\Response
      */
     public function show(Sale $sale)
     {
-        //
+        $sale->load(['customer', 'employee', 'products']);
+        $totalPrice = 0;
+        $totalQuantity = 0;
+        foreach($sale->products as $product) {
+            $totalPrice += $product->price * $product->pivot->quantity;
+            $totalQuantity += $product->pivot->quantity;
+        }
+
+        return Inertia::render('Sales/Show', [
+            'sale' => $sale,
+            'total_price' => $totalPrice,
+            'total_quantity' => $totalQuantity,
+        ]);
     }
 
     /**
