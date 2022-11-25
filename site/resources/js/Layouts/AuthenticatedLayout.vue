@@ -29,8 +29,26 @@ const showingNavigationDropdown = ref(false);
 
                             <!-- Navigation Links -->
                             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
-                                    Dashboard
+<!--                                <NavLink :href="route('dashboard')" :active="route().current('dashboard')">-->
+<!--                                    Dashboard-->
+<!--                                </NavLink>-->
+                                <NavLink :href="route('customers.index')" :active="route().current('customers.index')">
+                                    Customers
+                                </NavLink>
+                                <NavLink :href="route('sales.index')" :active="route().current('sales.index')">
+                                    Sales
+                                </NavLink>
+                                <NavLink :href="route('employees.index')" :active="route().current('employees.index')">
+                                    Employees
+                                </NavLink>
+                                <NavLink :href="route('subscriptions.index')" :active="route().current('subscriptions.index')">
+                                    Subscriptions
+                                </NavLink>
+                                <NavLink :href="route('products.index')" :active="route().current('products.index')">
+                                    Products
+                                </NavLink>
+                                <NavLink :href="route('categories.index')" :active="route().current('categories.index')">
+                                    Categories
                                 </NavLink>
                             </div>
                         </div>
