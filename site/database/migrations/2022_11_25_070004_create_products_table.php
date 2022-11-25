@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -20,8 +21,27 @@ return new class extends Migration
             $table->float("price");
             $table->integer("stock");
             $table->foreignId('category_id')->constrained()->cascadeOnDelete();
-            $table->timestamps();
         });
+
+        DB::table('products')->insert(
+            array([
+                    'id'=> 1,
+                    'name' => 'God of War PS5',
+                    'description' => "Do it boy !",
+                    'price' => 50,
+                    'stock' => 27,
+                    'category_id' => 2
+                ],
+                [
+                    'id'=> 2,
+                    'name' => 'Cyberpunk 2077 PS4',
+                    'description' => "You're breath taking !",
+                    'price' => 30,
+                    'stock' => 15,
+                    'category_id' => 3
+                ]
+            )
+        );
     }
 
     /**

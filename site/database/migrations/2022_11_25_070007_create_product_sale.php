@@ -17,8 +17,21 @@ return new class extends Migration
             $table->foreignId('product_id')->constrained()->cascadeOnDelete();
             $table->foreignId('sale_id')->constrained()->cascadeOnDelete();
             $table->integer("quantity");
-            $table->timestamps();
         });
+
+        DB::table('product_sale')->insert(
+            array([
+                    'product_id' => 1,
+                    'sale_id' => 2,
+                    'quantity' => 2,
+                ],
+                [
+                    'product_id' => 2,
+                    'sale_id' => 1,
+                    'quantity' => 1,
+                ]
+            )
+        );
     }
 
     /**

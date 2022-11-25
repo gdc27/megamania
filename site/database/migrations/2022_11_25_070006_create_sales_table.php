@@ -16,11 +16,25 @@ return new class extends Migration
         Schema::create('sales', function (Blueprint $table) {
             $table->id();
             $table->date("date");
-            $table->float("price");
             $table->foreignId('customer_id')->constrained()->cascadeOnDelete();
             $table->foreignId('employee_id')->constrained()->cascadeOnDelete();
-            $table->timestamps();
         });
+
+        DB::table('sales')->insert(
+            array([
+                    'id'=> 1,
+                    'date' => '2022-11-11',
+                    'customer_id' => 3,
+                    'employee_id' => 2,
+                ],
+                [
+                    'id'=> 2,
+                    'date' => '2022-11-11',
+                    'customer_id' => 4,
+                    'employee_id' => 1,
+                ]
+            )
+        );
     }
 
     /**

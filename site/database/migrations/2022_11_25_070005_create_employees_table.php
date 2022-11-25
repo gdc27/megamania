@@ -19,8 +19,25 @@ return new class extends Migration
             $table->string("last_name",40);
             $table->float("salary");
             $table->date("hiring_date");
-            $table->timestamps();
         });
+
+        DB::table('employees')->insert(
+            array([
+                    'id'=> 1,
+                    'first_name' => 'Gertrude',
+                    'last_name' => "Maximin",
+                    'salary' => 1330,
+                    'hiring_date' => '2018-12-27',
+                ],
+                [
+                    'id'=> 2,
+                    'first_name' => 'Georges',
+                    'last_name' => "Michael",
+                    'salary' => 1500,
+                    'hiring_date' => '2020-09-12',
+                ]
+            )
+        );
     }
 
     /**
