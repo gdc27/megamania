@@ -16,7 +16,7 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        return Inertia::render('/Customers/Index', [
+        return Inertia::render('Customers/Index', [
             'customers' => Customer::all(),
         ]);
     }
