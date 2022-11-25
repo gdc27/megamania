@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('subscriptions', function (Blueprint $table) {
             $table->id();
+            $table->string("name");
+            $table->float("monthly_cost");
+            $table->integer("count_percentage");
             $table->timestamps();
         });
     }
