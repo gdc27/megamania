@@ -7,6 +7,7 @@ use App\Models\Employee;
 use App\Models\Product;
 use App\Models\Sale;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Inertia\Inertia;
 
 class SaleController extends Controller
@@ -55,11 +56,25 @@ class SaleController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'customer_id' => 'required',
+            'employee_id' => 'required',
+            'products' => 'required',
+        ]);
+
+        $saleData = array_merge($validated, ['date' => Carbon::today()]);
+        $sale = Sale::create($saleData);
+        foreach ($request->products as $id => $product) {
+            if ($product['checked']) {
+                $sale->products()->attach($id, ['quantity' => $product['qty']]);
+            }
+        }
+
+        return redirect(route('sales.index'));
     }
 
     /**

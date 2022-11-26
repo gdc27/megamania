@@ -12,6 +12,14 @@ class Sale extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+
+    protected $fillable = [
+        'customer_id',
+        'employee_id',
+        'date'
+    ];
+
     public function employee(): BelongsTo
     {
         return $this->belongsTo(Employee::class);

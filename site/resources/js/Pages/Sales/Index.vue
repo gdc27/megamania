@@ -16,6 +16,9 @@ defineProps(['sales'])
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <a :href="route('sales.create')">
+                    <PrimaryButton class="mb-3">Add a sale</PrimaryButton>
+                </a>
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div v-for="sale in sales" class="p-6 text-gray-900 flex justify-between">
                         <div>
