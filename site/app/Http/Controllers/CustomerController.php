@@ -49,9 +49,11 @@ class CustomerController extends Controller
             'first_name' => 'required|string|max:30',
             'last_name' => 'required|string|max:40',
             'email' => 'required|email|unique:users,email',
+            'subscription_id' => 'required|integer|exists:subscriptions,id',
         ]);
 
-        Customer::create($validated);
+        $customer = Customer::create($validated);
+        $customer->subscription()->attach($validated['subscription_id']);
 
         return redirect(route('customers.index'));
     }
