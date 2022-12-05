@@ -12,6 +12,8 @@ class Customer extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+
     protected $fillable = [
         'first_name',
         'last_name',

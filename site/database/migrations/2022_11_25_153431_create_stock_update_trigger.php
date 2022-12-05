@@ -5,8 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      *
@@ -14,22 +13,25 @@ return new class extends Migration
      */
     public function up()
     {
-        // TODO Terminer et tester le trigger
+        // TODO Tester le trigger
         DB::unprepared('
-            CREATE TRIGGER NEW_SALE
-            BEFORE INSERT OR UPDATE ON DOCUMENT
-            FOR EACH ROW
-            EXECUTE PROCEDURE UpdateProductsStock();
-
-            CREATE OR REPLACE FUNCTION VerifyDocumentType()
-            RETURNS TRIGGER
-            AS $$
+            CREATE OR REPLACE FUNCTION update_stock() RETURNS TRIGGER AS $$
+            DECLARE
+                var_product_id INT;
+                var_quantity INT;
+                var_stock INT;
             BEGIN
-                // Récupérer lid de la commande
-                // Récupérer les ids et les qtty des products de la commande
-                // Update le stock en soustrayant la qtty
+                SELECT product_id, quantity INTO var_product_id, var_quantity FROM product_sale WHERE sale_id = NEW.sale_id;
+                SELECT stock INTO var_stock FROM products WHERE id = var_product_id;
+                UPDATE products SET stock = var_stock - var_quantity WHERE id = var_product_id;
+                RETURN NEW;
             END;
-            $$ LANGUAGE PLPGSQL;
+            $$ LANGUAGE plpgsql;
+
+            CREATE TRIGGER update_stock_trigger
+            AFTER INSERT ON product_sale
+            FOR EACH ROW
+            EXECUTE PROCEDURE update_stock();
         ');
     }
 
