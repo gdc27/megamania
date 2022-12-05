@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
+use App\Models\Subscription;
 use App\Models\User;
 use Cassandra\Custom;
 use Illuminate\Contracts\Foundation\Application;
@@ -33,7 +34,7 @@ class CustomerController extends Controller
     public function create()
     {
         return Inertia::render('Customers/Create', [
-            //
+            'subscriptions' => Subscription::all(),
         ]);
     }
 
