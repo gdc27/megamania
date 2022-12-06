@@ -1,6 +1,16 @@
 # Linux/MacOs
 ## Lancement de l'application :
 ```./start.sh```
+    
+### Une fois les containers lancés, faire:
+    > cd site
+    > ./vendor/bin/sail npm run dev
+
+Le site est alors dispo au port 80. 
+Pour se connecter, utilisez l'utilisateur "user" (sinon créez un utilisateur sur localhost:80/register) :
+```email : u.u@user.com```
+```mdp : password```
+
 
 ## Arrêt de l'application :
 ```./stop.sh```
@@ -12,6 +22,15 @@
 
 ### 2. Lancement des containers
 ```docker compose up```
+
+### Une fois les containers lancés, faire:
+    > cd site
+    > ./vendor/bin/sail npm run dev
+
+Le site est alors dispo au port 80.
+Pour se connecter, utilisez l'utilisateur "user" (sinon créez un utilisateur sur localhost:80/register)  :
+```email : u.u@user.com```
+```mdp : password```
 
 ## Arrêt de l'application :
 ```docker compose down```
