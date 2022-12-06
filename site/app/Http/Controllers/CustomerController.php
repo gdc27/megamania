@@ -54,7 +54,8 @@ class CustomerController extends Controller
         ]);
 
         $customer = Customer::create($validated);
-        $customer->subscription()->attach($validated['subscription_id']);
+        $subscription = Subscription::find($validated['subscription_id']);
+        $customer->subscription()->associate($subscription);
 
         return redirect(route('customers.index'));
     }

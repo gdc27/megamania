@@ -22,13 +22,13 @@ return new class extends Migration
 
         DB::table('sales')->insert(
             array([
-                    'id'=> 1,
+                    'id'=> 98,
                     'date' => '2022-11-11',
                     'customer_id' => 3,
                     'employee_id' => 2,
                 ],
                 [
-                    'id'=> 2,
+                    'id'=> 99,
                     'date' => '2022-11-11',
                     'customer_id' => 4,
                     'employee_id' => 1,

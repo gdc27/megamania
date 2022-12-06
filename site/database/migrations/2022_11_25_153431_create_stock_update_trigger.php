@@ -13,7 +13,6 @@ return new class extends Migration {
      */
     public function up()
     {
-        // TODO Tester le trigger
         DB::unprepared('
             CREATE OR REPLACE FUNCTION update_stock() RETURNS TRIGGER AS $$
             DECLARE

@@ -5,10 +5,14 @@ import PrimaryButton from "@/Components/PrimaryButton.vue";
 import TextInput from "@/Components/TextInput.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 
+
+// get the props from the server
+defineProps(['subscriptions']);
 const form = useForm({
     first_name: '',
     last_name: '',
     email: '',
+    subscription_id: '',
 })
 </script>
 
@@ -50,6 +54,12 @@ const form = useForm({
                         class="mt-1 block"
                         v-model="form.email"
                     />
+                    <InputLabel>Abonnement</InputLabel>
+                    <select v-model="form.subscription_id">
+                        <option v-for="sub in subscriptions" :value="sub.id">
+                            {{ sub.name }} - {{ sub.monthly_cost }}€ - {{ sub.discount_percentage }}%
+                        </option>
+                    </select>
                     <PrimaryButton class="mt-3">Add</PrimaryButton>
                 </form>
             </div>

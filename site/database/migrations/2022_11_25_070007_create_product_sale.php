@@ -22,12 +22,12 @@ return new class extends Migration
         DB::table('product_sale')->insert(
             array([
                     'product_id' => 1,
-                    'sale_id' => 2,
+                    'sale_id' => 99,
                     'quantity' => 2,
                 ],
                 [
                     'product_id' => 2,
-                    'sale_id' => 1,
+                    'sale_id' => 98,
                     'quantity' => 1,
                 ]
             )

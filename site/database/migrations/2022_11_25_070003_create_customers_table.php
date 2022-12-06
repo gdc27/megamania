@@ -17,7 +17,7 @@ return new class extends Migration {
             $table->string("email", 255)->nullable()->unique();
             $table->string("first_name", 30);
             $table->string("last_name", 40);
-            $table->foreignId('subscription_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('subscription_id')->nullable()->constrained()->cascadeOnDelete();
         });
 
         DB::table('customers')->insert(
